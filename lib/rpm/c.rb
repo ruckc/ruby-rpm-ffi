@@ -5,10 +5,10 @@ module RPM
     extend ::FFI::Library
 
     begin
-      ffi_lib ['rpm',
-               'librpm.so.8', # Tumbleweed
+      ffi_lib ['librpm.so.8', # Tumbleweed
                'librpm.so.7', # fedora 23
-               'librpm.so.3', 'librpm.so.2', 'librpm.so.1']
+               'librpm.so.3', 'librpm.so.2', 'librpm.so.1',
+               'rpm'] # 'rpm' is a directory at /usr/lib/rpm, which causes it to fail because it can't read a directory
     rescue LoadError => e
       raise(
         "Can't find rpm libs on your system: #{e.message}"
